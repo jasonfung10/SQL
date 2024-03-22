@@ -1,4 +1,4 @@
-/*
+
 -- Standardised Date Formate
 -- change the text to date first then further format the date
 SELECT SaleDate, DATE_FORMAT(STR_TO_DATE(SaleDate, '%M %d, %Y'),'%Y-%m-%d' )AS NewDate
@@ -17,9 +17,9 @@ SELECT *
 FROM `freecodecamp`.`nashville housing data for data cleaning`;
 
 --
-*/
 
-/*
+
+
 -- Property Address
 SELECT *
 FROM `freecodecamp`.`nashville housing data for data cleaning`
@@ -43,9 +43,9 @@ JOIN
 SET	a.PropertyAddress = b.PropertyAddress
 WHERE a.PropertyAddress="";
 
-*/
 
-/*
+
+
 -- Spliting Address into City, State
 
 SELECT PropertyAddress, SUBSTRING_INDEX(PropertyAddress,",",1) AS Street, SUBSTRING_INDEX(PropertyAddress,",",-1) AS STATE
@@ -63,9 +63,9 @@ ADD PropertySplitCity varchar(255);
 UPDATE `freecodecamp`.`nashville housing data for data cleaning`
 SET PropertySplitCity = SUBSTRING_INDEX(PropertyAddress,",",-1);
 
-*/
 
-/*
+
+
 -- Splitting owner address
 SELECT SUBSTRING_INDEX(OwnerAddress,",",1) AS Street,SUBSTRING_INDEX(SUBSTRING_INDEX(OwnerAddress,",",-2),",",1) AS City, SUBSTRING_INDEX(OwnerAddress,",",-1) AS State
 FROM `freecodecamp`.`nashville housing data for data cleaning`;
@@ -88,9 +88,7 @@ ADD OwnerSplitState varchar(255);
 UPDATE `freecodecamp`.`nashville housing data for data cleaning`
 SET OwnerSplitState = SUBSTRING_INDEX(OwnerAddress,",",-1);
 
-*/
 
-/*
 -- Change Y & N to Yes & No
 
 SELECT SoldAsVacant
@@ -104,9 +102,7 @@ CASE	WHEN SoldAsVacant = 'Y' THEN "Yes"
         ELSE SoldAsVacant
 END 
 
-*/
 
-/*
 -- Remove Duplicate
 
 WITH DUPLICATECTE AS (
@@ -128,9 +124,7 @@ FROM `freecodecamp`.`nashville housing data for data cleaning`
 JOIN DUPLICATECTE ON DUPLICATECTE.UniqueID = `freecodecamp`.`nashville housing data for data cleaning`.UniqueID
 WHERE row_num > 1
 
-*/
 
-/*
 -- Delete unused columns
 
 SELECT *
@@ -140,6 +134,4 @@ ALTER TABLE  `freecodecamp`.`nashville housing data for data cleaning`
 DROP COLUMN OwnerAddress, 
 DROP COLUMN PropertyAddress, 
 DROP COLUMN TaxDistrict
-*/
-
 
